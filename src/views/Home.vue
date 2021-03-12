@@ -1,10 +1,10 @@
 <template>
   <el-container>
-    <el-header style="height: 40px">
+    <el-header style="height: 45px">
       <img :src="logoPath.Path" class="image" />
     </el-header>
     <el-container>
-      <el-aside width="200px">
+      <el-aside width="230px">
         <el-menu
           :uniqueOpened="true"
           default-active="Catalog"
@@ -76,7 +76,7 @@ export default defineComponent({
 .el-aside {
   background-color: #1b1b1b;
   color: #333;
-  text-align: center;
+  text-align: left;
 }
 
 .el-header,

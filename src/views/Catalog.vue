@@ -1,6 +1,14 @@
 <template>
-  <el-row :gutter="200">
-    <el-col :lg="judge(index)" :md="5" :sm="8" :xs="12" v-for="(item, index) in cardItemList" :key="index">
+  <el-row>
+    <el-button>默认按钮</el-button>
+    <el-button type="primary">主要按钮</el-button>
+    <el-button type="success">成功按钮</el-button>
+    <el-button type="info">信息按钮</el-button>
+    <el-button type="warning">警告按钮</el-button>
+    <el-button type="danger">危险按钮</el-button>
+  </el-row>
+  <el-row :gutter="20" style="min-width:1045px">
+    <el-col :span="judge()" v-for="(item, index) in cardItemList" :key="index">
       <menu-item-card :item="item" />
     </el-col>
   </el-row>
@@ -59,8 +67,8 @@ export default defineComponent({
     };
   },
   methods: {
-    judge(index: number) {
-      return (index + 1) % 5 === 0 ? 5 : 4;
+    judge() {
+      return screen.width / 150;
     },
   },
 });

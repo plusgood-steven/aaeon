@@ -1,17 +1,12 @@
 <template>
-  <el-card
-    :body-style="{ padding: '20px', width: '250px', height: '250px', margintop: '10px' }"
-    shadow="hover"
-    class="box-card"
-    style="cursor: pointer;"
-  >
-    <img :src="item.image" class="image" />
-    <div style="padding: 1px">
-      <h1 style="font-weight: bold;">{{ item.title }}</h1>
-      <div class="bottom">
-        <i class="title">{{ item.description }} </i>
-        <el-button type="text" class="button" @click.stop>詳細資訊</el-button>
-      </div>
+  <el-card :body-style="{ padding: '0px 10px', height: '300px' }" shadow="hover" class="box-card" style="cursor: pointer;">
+    <img :src="item.image" class="image" style="padding-top: 10px" />
+    <h1 style="font-weight: bold;">{{ item.title }}</h1>
+    <div style="height: 100px; width: 100%;text-align: left">
+      <i class="title" style=" word-wrap: break-word; ">{{ item.description }} </i>
+    </div>
+    <div class="bottom">
+      <el-button type="text" class="button" @click.stop>詳細資訊</el-button>
     </div>
   </el-card>
 </template>
@@ -39,7 +34,7 @@ export default defineComponent({
 }
 
 .bottom {
-  display: flex;
+  display: bottom;
   justify-content: space-between;
   align-items: center;
   text-align: left;
