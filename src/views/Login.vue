@@ -91,7 +91,8 @@ export default defineComponent({
 }
 
 .center {
-  padding: 50px 0;
+  padding: 50px 0px;
   text-align: center;
+  margin-block-start: 0px;
 }
 </style>

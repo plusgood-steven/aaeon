@@ -7,11 +7,13 @@
     <el-button type="warning">警告按钮</el-button>
     <el-button type="danger">危险按钮</el-button>
   </el-row>
-  <el-row :gutter="20" style="min-width:1045px">
-    <el-col :span="judge()" v-for="(item, index) in cardItemList" :key="index">
-      <menu-item-card :item="item" />
-    </el-col>
-  </el-row>
+  <div style="overflow-y: auto;">
+    <el-row :gutter="20" style="min-width:1045px">
+      <el-col :span="judge()" v-for="(item, index) in cardItemList" :key="index">
+        <menu-item-card :item="item" />
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script lang="ts">
@@ -60,6 +62,11 @@ export default defineComponent({
         title: "test",
         description: "hhhjsfhjkahfjjhhhhhhhhhhhhhhhhhhhhhhhhaaaaaa",
       },
+      {
+        image: require("@/assets/picture/logo.png"),
+        title: "test",
+        description: "hhhjsfhjkahfjjhhhhhhhhhhhhhhhhhhhhhhhhaaaaaa",
+      },
     ];
     return {
       currentDate: new Date(),
@@ -68,7 +75,7 @@ export default defineComponent({
   },
   methods: {
     judge() {
-      return screen.width / 150;
+      return screen.width / 200;
     },
   },
 });

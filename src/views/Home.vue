@@ -1,6 +1,6 @@
 <template>
-  <el-container>
-    <el-header style="height: 45px">
+  <el-container style="height: 100%" direction="vertical">
+    <el-header height="45px">
       <img :src="logoPath.Path" class="image" />
     </el-header>
     <el-container>
@@ -90,5 +90,6 @@ export default defineComponent({
   background-color: #e9eef3;
   color: #333;
   text-align: center;
+  overflow: auto;
 }
 </style>
