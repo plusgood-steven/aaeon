@@ -59,8 +59,8 @@ export default defineComponent({
     handleSubmit() {
       if (!(this.form.passWord === "" || this.form.email === ""))
         apiUserLogin({
-          password: this.form.passWord,
-          email: this.form.email,
+          Password: this.form.passWord,
+          Email: this.form.email,
         })
           .then((data) => {
             console.log(data);

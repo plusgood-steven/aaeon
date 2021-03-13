@@ -1,9 +1,9 @@
 <template>
   <el-card :body-style="{ padding: '0px 10px', height: '300px' }" shadow="hover" class="box-card" style="cursor: pointer;">
-    <img :src="item.image" class="image" style="padding-top: 10px" />
-    <h1 style="font-weight: bold;">{{ item.title }}</h1>
+    <img :src="item.CoverPhotoURL" class="image" style="padding-top: 10px" />
+    <h1 style="font-weight: bold;">{{ item.Title }}</h1>
     <div style="height: 100px; width: 100%;text-align: left">
-      <i class="title" style=" word-wrap: break-word; ">{{ item.description }} </i>
+      <i class="title" style=" word-wrap: break-word; ">{{ item.Description }} </i>
     </div>
     <div class="bottom">
       <el-button type="text" class="button" @click.stop>詳細資訊</el-button>
@@ -13,14 +13,14 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { CardItem } from "@/data/cardItem";
+import { ImagesOverviewType } from "@/data/interface";
 
 export default defineComponent({
   name: "menuItemCard",
   props: {
     item: {
       required: true,
-      type: Object as PropType<CardItem>,
+      type: Object as PropType<ImagesOverviewType>,
     },
   },
 });
