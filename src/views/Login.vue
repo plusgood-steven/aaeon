@@ -34,10 +34,7 @@ interface User {
 }
 export default defineComponent({
   name: "Login",
-  components: {
-    // UserOutlined,
-    // LockOutlined,
-  },
+  components: {},
   setup() {
     const store = useStore();
     const state = store.state;

@@ -1,14 +1,18 @@
 <template>
-  <el-card :body-style="{ padding: '0px 10px', height: '300px' }" shadow="hover" class="box-card" style="cursor: pointer;">
-    <img :src="item.CoverPhotoURL" class="image" style="padding-top: 10px" />
-    <h1 style="font-weight: bold;">{{ item.Title }}</h1>
-    <div style="height: 100px; width: 100%;text-align: left">
-      <i class="title" style=" word-wrap: break-word; ">{{ item.Description }} </i>
-    </div>
-    <div class="bottom">
-      <el-button type="text" class="button" @click.stop>詳細資訊</el-button>
-    </div>
-  </el-card>
+  <div class="cardstyle">
+    <el-card :body-style="{ padding: '0px', height: '300px' }" shadow="hover" class="card2" style="cursor: pointer;   transform: rotate(3deg);" />
+    <el-card :body-style="{ padding: '0px', height: '300px' }" shadow="hover" class="card2" style="cursor: pointer;   transform: rotate(-3deg);" />
+    <el-card :body-style="{ padding: '0px', height: '300px' }" shadow="hover" class="box-card" style="cursor: pointer;">
+      <img :src="item.CoverPhotoURL" class="image" style="padding-top: 10px" />
+      <h1 style="font-weight: bold; margin-block-end:0 ;">{{ item.Title }}</h1>
+      <div style="height: 50px; width: calc(100% -20px);text-align: left; padding: 0px 10px;">
+        <i class="title" style=" word-wrap: break-word; ">{{ item.Description }} </i>
+      </div>
+      <div class="bottom">
+        <el-button type="text" class="button" @click.stop>詳細資訊</el-button>
+      </div>
+    </el-card>
+  </div>
 </template>
 
 <script lang="ts">
@@ -28,6 +32,22 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.cardstyle {
+  position: relative;
+  width: 250px;
+  height: 300px;
+  margin-bottom: 30px;
+}
+
+.card2 {
+  position: absolute;
+  width: 250px;
+  height: 300px;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
 .title {
   font-size: 18px;
   color: #999;
@@ -38,6 +58,9 @@ export default defineComponent({
   justify-content: space-between;
   align-items: center;
   text-align: left;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
 }
 
 .button {
@@ -47,15 +70,16 @@ export default defineComponent({
 
 .image {
   width: 100%;
-  height: 100px;
+  height: 150px;
   display: block;
 }
+
 .box-card {
   width: 250px;
   height: 300px;
-  margin-top: 10px;
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
+  z-index: 3;
 }
 </style>

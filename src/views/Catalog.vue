@@ -1,16 +1,19 @@
 <template>
-  <div>
-    <el-row>
-      <el-button style="width:100px">按鈕</el-button>
-      <el-button type="primary">按鈕</el-button>
-      <el-button type="success">按鈕</el-button>
-      <el-button type="info">按鈕</el-button>
-      <el-button type="warning">按鈕</el-button>
-      <el-button type="danger">按鈕</el-button>
-    </el-row>
+  <div class="selectArea">
+    <div class="buttonArea">
+      <el-row>
+        <el-button class="buttonStyle" icon="el-icon-collection">COLLECTIONS</el-button>
+        <el-button class="buttonStyle" icon="el-icon-files">CONTAINERS</el-button>
+        <el-button class="buttonStyle" icon="el-icon-receiving">HELM CHARTS</el-button>
+        <el-button class="buttonStyle" icon="el-icon-copy-document">MODELS</el-button>
+      </el-row>
+    </div>
+    <el-select v-model="value" multiple filterable allow-create default-first-option placeholder="Search" class="selectStyle">
+      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+    </el-select>
   </div>
   <div class="blockArea">
-    <el-row :gutter="20" style="min-width:1045px;margin-left:0px;margin-right:0px;">
+    <el-row :gutter="30" style="min-width:1045px;margin-left:0px;margin-right:0px;">
       <el-col :span="judge()" v-for="(item, index) in cardItemList" :key="index">
         <menu-item-card :item="item" />
       </el-col>
@@ -39,6 +42,25 @@ export default defineComponent({
   data() {
     return {
       currentDate: new Date(),
+      options: [
+        {
+          value: "Description",
+          label: "Description",
+        },
+        {
+          value: "Display Name",
+          label: "Display Name",
+        },
+        {
+          value: "Name",
+          label: "Name",
+        },
+        {
+          value: "Publisher",
+          label: "Publisher",
+        },
+      ],
+      value: [],
     };
   },
   methods: {
@@ -58,15 +80,34 @@ export default defineComponent({
 
 <style scoped>
 .blockArea {
+  margin-top: 20px;
   overflow: auto;
-  height: calc(100vh - 125px);
+  height: calc(100vh - 210px);
+}
+
+.buttonStyle {
+  width: 250px;
+  height: 60px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.selectArea {
+  height: 100px;
+  position: relative;
+}
+
+.buttonArea {
+  min-width: 1045px;
+  position: absolute;
+  top: 0;
+}
+
+.selectStyle {
+  width: 100%;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  margin-top: 10px;
 }
 </style>
-
-// { // image: require("@/assets/picture/logo.png"), // title: "test", // description: "hhhjsfhjkahfjjhhhhhhhhhhhhhhhhhhhhhhhhsssssssssssssss", // },
-// { // image: require("@/assets/picture/logo.png"), // title: "test", // description: "hhhjsfhjkahfjjhhhhhhhhhhhhhhhhhhhhhhhh", // }, // { // image:
-require("@/assets/picture/logo.png"), // title: "test", // description: "hhhjsfhjkahfjjhhhhhhhhhhhhhhhhhhhhhhhhssssss", // }, // { // image:
-require("@/assets/picture/logo.png"), // title: "test", // description: "hhhjsfhjkahfjjhhhhhhhhhhhhhhhhhhhhhhhhaaaaaa", // }, // { // image:
-require("@/assets/picture/logo.png"), // title: "test", // description: "hhhjsfhjkahfjjhhhhhhhhhhhhhhhhhhhhhhhhaaaaaa", // }, // { // image:
-require("@/assets/picture/logo.png"), // title: "test", // description: "hhhjsfhjkahfjjhhhhhhhhhhhhhhhhhhhhhhhhaaaaaa", // }, // { // image:
-require("@/assets/picture/logo.png"), // title: "test", // description: "hhhjsfhjkahfjjhhhhhhhhhhhhhhhhhhhhhhhhaaaaaa", // },
