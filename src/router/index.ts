@@ -55,7 +55,10 @@ router.beforeEach((to, from, next) => {
   else {
     judgeLogin().then(() => {
       store.state.isLogin = true;
-      next();
+      if (to.name === "Home")
+        next({ name: "Catalog" })
+      else
+        next();
     }).catch(() => {
       if (to.name === "Login")
         next()
