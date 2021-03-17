@@ -1,5 +1,5 @@
 <template>
-  <div class="cardstyle">
+  <div class="cardstyle" @click="toDetail(item.Title)">
     <el-card :body-style="{ padding: '0px', height: '300px' }" shadow="hover" class="card2" style="cursor: pointer;   transform: rotate(3deg);" />
     <el-card :body-style="{ padding: '0px', height: '300px' }" shadow="hover" class="card2" style="cursor: pointer;   transform: rotate(-3deg);" />
     <el-card :body-style="{ padding: '0px', height: '300px' }" shadow="hover" class="box-card" style="cursor: pointer;">
@@ -9,7 +9,7 @@
         <i class="title" style=" word-wrap: break-word; ">{{ item.Description }} </i>
       </div>
       <div class="bottom">
-        <el-button type="text" class="button" @click.stop>詳細資訊</el-button>
+        <el-button type="text" class="button">詳細資訊</el-button>
       </div>
     </el-card>
   </div>
@@ -18,6 +18,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import { ImagesOverviewType } from "@/data/interface";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "menuItemCard",
@@ -25,6 +26,17 @@ export default defineComponent({
     item: {
       required: true,
       type: Object as PropType<ImagesOverviewType>,
+    },
+  },
+  setup() {
+    const router = useRouter();
+    return {
+      router,
+    };
+  },
+  methods: {
+    toDetail(id: string) {
+      this.router.push(`/catalog/${id}`);
     },
   },
 });

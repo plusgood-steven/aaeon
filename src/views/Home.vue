@@ -91,5 +91,6 @@ export default defineComponent({
   color: #333;
   text-align: center;
   overflow: auto;
+  padding: 0;
 }
 </style>

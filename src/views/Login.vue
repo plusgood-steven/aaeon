@@ -63,6 +63,8 @@ export default defineComponent({
             console.log(data);
             this.store.commit("changeisLogin", true);
             this.$router.push("/catalog");
+            sessionStorage.setItem("email", this.form.email);
+            sessionStorage.setItem("password", this.form.passWord);
           })
           .catch(() => {
             ElMessage.error("帳號密碼有誤 !");
