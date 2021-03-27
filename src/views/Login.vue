@@ -1,5 +1,8 @@
 <template>
-  <h1 class="center">登入</h1>
+  <div class="center">
+    <el-image style="margin: auto;margin-bottom:30px" :src="logoPath.Path" />
+    <h1>Sign in</h1>
+  </div>
   <div class="cc">
     <el-form ref="formVal" :model="form" :label-position="`top`" v-on:keyup.enter="handleSubmit()">
       <el-form-item label="Email :" prop="email">
@@ -48,8 +51,12 @@ export default defineComponent({
     };
   },
   data() {
+    const logoPath = {
+      Path: require("@/assets/picture/logo.png"),
+    };
     return {
       form: { passWord: "", email: "" },
+      logoPath,
     };
   },
   methods: {
@@ -85,12 +92,13 @@ export default defineComponent({
 .cc {
   margin: auto;
   position: relative;
-  width: 50%;
+  width: 30%;
   font-weight: 550;
 }
 
 .center {
   padding: 50px 0px;
+  margin: 0;
   text-align: center;
   margin-block-start: 0px;
 }

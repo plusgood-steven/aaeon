@@ -14,7 +14,7 @@
     <div class="blockArea">
       <el-row :gutter="30" style="min-width:1045px;margin-left:0px;margin-right:0px;">
         <el-col :span="judge()" v-for="(item, index) in cardItemList" :key="index">
-          <menu-item-card :item="item" />
+          <image-card :item="item" />
         </el-col>
       </el-row>
     </div>
@@ -24,13 +24,13 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { ImagesOverviewType } from "@/data/interface";
-import menuItemCard from "@/components/menuItemCard.vue";
+import imageCard from "@/components/imageCard.vue";
 import { apiImagesOverview } from "@/API";
 
 export default defineComponent({
   name: "Catalog",
   components: {
-    menuItemCard,
+    imageCard,
   },
   setup() {
     const cardItemList = ref<ImagesOverviewType[]>([]);

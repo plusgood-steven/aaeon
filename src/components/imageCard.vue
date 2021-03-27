@@ -21,7 +21,7 @@ import { ImagesOverviewType } from "@/data/interface";
 import { useRouter } from "vue-router";
 
 export default defineComponent({
-  name: "menuItemCard",
+  name: "imageCard",
   props: {
     item: {
       required: true,
