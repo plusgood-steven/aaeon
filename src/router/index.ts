@@ -3,7 +3,6 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import store from '../store'
 import { apiUserLogin } from "@/API"
-import { useStore } from "vuex";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -40,8 +39,8 @@ function judgeLogin() {
   const sessionPassword = sessionStorage.getItem("password");
   if (sessionPassword !== null && sessionEmail !== null) {
     return apiUserLogin({
-      Password: sessionPassword,
-      Email: sessionEmail,
+      password: sessionPassword,
+      email: sessionEmail,
     })
   } else {
     return Promise.reject()
@@ -53,13 +52,16 @@ router.beforeEach((to, from, next) => {
   if (to.name !== "Login" && store.state.isLogin)
     next()
   else {
-    judgeLogin().then(() => {
-      store.state.isLogin = true;
+    judgeLogin().then((res) => {
+      store.commit("changeToken", res.data.data.tokenData.token);
+      store.commit("changeisLogin", true);
+      //TAG: 預設主頁導向方向
       if (to.name === "Home")
         next({ name: "Catalog" })
       else
         next();
     }).catch(() => {
+      console.log("reLoad fail")
       if (to.name === "Login")
         next()
       else

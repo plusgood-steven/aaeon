@@ -12,15 +12,16 @@
           </template>
         </el-input>
       </el-form-item>
-      <el-form-item label="PassWord :">
-        <el-input v-model="form.passWord" show-password placeholder="請輸入密碼">
+      <el-form-item label="Password :">
+        <el-input v-model="form.password" show-password placeholder="請輸入密碼">
           <template #prefix>
             <i class="el-icon-lock"></i>
           </template>
         </el-input>
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="handleSubmit()" style="position:relative;left:85%;top:30px">Login</el-button>
+      <el-form-item style="position:relative;left:70%;top:30px">
+        <el-button type="text" style="margin-right: 20px">Register</el-button>
+        <el-button type="primary" @click="handleSubmit()">Login</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -31,10 +32,6 @@ import { computed, defineComponent, ref } from "vue";
 import { useStore } from "vuex";
 import { ElMessage } from "element-plus";
 import { apiUserLogin } from "@/API";
-interface User {
-  userName: string;
-  passWord: string;
-}
 export default defineComponent({
   name: "Login",
   components: {},
@@ -55,28 +52,29 @@ export default defineComponent({
       Path: require("@/assets/picture/logo.png"),
     };
     return {
-      form: { passWord: "", email: "" },
+      form: { password: "", email: "" },
       logoPath,
     };
   },
   methods: {
     handleSubmit() {
-      if (!(this.form.passWord === "" || this.form.email === ""))
+      if (!(this.form.password === "" || this.form.email === ""))
         apiUserLogin({
-          Password: this.form.passWord,
-          Email: this.form.email,
+          password: this.form.password,
+          email: this.form.email,
         })
-          .then((data) => {
-            console.log(data);
+          .then((res) => {
+            console.log(res);
             this.store.commit("changeisLogin", true);
+            this.store.commit("changeToken", res.data.data.tokenData.token);
             this.$router.push("/catalog");
             sessionStorage.setItem("email", this.form.email);
-            sessionStorage.setItem("password", this.form.passWord);
+            sessionStorage.setItem("password", this.form.password);
           })
           .catch(() => {
             ElMessage.error("帳號密碼有誤 !");
             this.form.email = "";
-            this.form.passWord = "";
+            this.form.password = "";
           });
       else
         ElMessage.warning({

@@ -81,7 +81,7 @@ export default defineComponent({
 
 .el-header,
 .el-footer {
-  background-color: #000000;
+  background-color: #1f1f1f;
   color: rgb(0, 0, 0);
   text-align: center;
 }

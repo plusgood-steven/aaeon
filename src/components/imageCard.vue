@@ -1,12 +1,12 @@
 <template>
   <div class="cardstyle" @click="toDetail(item.Title)">
-    <el-card :body-style="{ padding: '0px', height: '300px' }" shadow="hover" class="card2" style="cursor: pointer;   transform: rotate(3deg);" />
-    <el-card :body-style="{ padding: '0px', height: '300px' }" shadow="hover" class="card2" style="cursor: pointer;   transform: rotate(-3deg);" />
+    <el-card :body-style="{ padding: '0px', height: '300px' }" solid shadow="hover" class="card2" style="cursor: pointer; transform: rotate(3deg);" />
+    <el-card :body-style="{ padding: '0px', height: '300px' }" shadow="hover" class="card2" style="cursor: pointer; transform: rotate(-3deg);" />
     <el-card :body-style="{ padding: '0px', height: '300px' }" shadow="hover" class="box-card" style="cursor: pointer;">
-      <img :src="item.CoverPhotoURL" class="image" style="padding-top: 10px" />
-      <h1 style="font-weight: bold; margin-block-end:0 ;">{{ item.Title }}</h1>
+      <img :src="item.coverPhotoURL" class="image" style="padding-top: 10px" />
+      <h1 style="font-weight: bold; margin-block-end:0 ;">{{ item.title }}</h1>
       <div style="height: 50px; width: calc(100% -20px);text-align: left; padding: 0px 10px;">
-        <i class="title" style=" word-wrap: break-word; ">{{ item.Description }} </i>
+        <i class="title" style=" word-wrap: break-word; ">{{ item.description }} </i>
       </div>
       <div class="bottom">
         <el-button type="text" class="button">詳細資訊</el-button>
@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { ImagesOverviewType } from "@/data/interface";
+import { CollectionsOverviewType } from "@/interefaces/Images";
 import { useRouter } from "vue-router";
 
 export default defineComponent({
@@ -25,7 +25,7 @@ export default defineComponent({
   props: {
     item: {
       required: true,
-      type: Object as PropType<ImagesOverviewType>,
+      type: Object as PropType<CollectionsOverviewType>,
     },
   },
   setup() {
@@ -38,6 +38,9 @@ export default defineComponent({
     toDetail(id: string) {
       this.router.push(`/catalog/${id}`);
     },
+  },
+  mounted() {
+    console.log(this.item);
   },
 });
 </script>

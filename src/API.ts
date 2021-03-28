@@ -1,18 +1,36 @@
 import axios from "axios"
-import { LoginType, RegisterType } from "@/data/interface"
+import store from "@/store/index"
+import { LoginType } from "@/interefaces/Auth"
+import { RegisterType } from "@/interefaces/User"
 
-// User 相關API
+// Auth api
+const AuthRequest = axios.create({
+    baseURL: "https://aaeonbackend.azurewebsites.net/auth/"
+})
+
+export const apiUserLogin = (data: LoginType) => AuthRequest.post("/login", data)
+
+// User api
 const userRequest = axios.create({
-    baseURL: "https://aaeonbackend.azurewebsites.net/users/"
+    baseURL: "https://aaeonbackend.azurewebsites.net/users/",
 }
 );
 
-const imagesRequest = axios.create({
-    baseURL: "https://aaeonbackend.azurewebsites.net/images/"
+export const apiUserRegister = (data: RegisterType) => userRequest.post("/register", data)
+export const apiUserGet = () => userRequest.get("/", {
+    headers: {
+        'Authorization': `Bearer ${store.state.token}`
+    }
 })
 
-export const apiUserLogin = (data: LoginType) => userRequest.post("/login", data)
-export const apiUserRegister = (data: RegisterType) => userRequest.post("/register", data)
 
+// images api
+const imagesRequest = axios.create({
+    baseURL: "https://aaeonbackend.azurewebsites.net//collections/"
+})
 
-export const apiImagesOverview = () => imagesRequest.get("/overview")
+export const apiImagesOverview = () => imagesRequest.get("/overview", {
+    headers: {
+        'Authorization': `Bearer ${store.state.token}`
+    }
+})

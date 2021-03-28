@@ -12,20 +12,23 @@
       </el-select>
     </div>
     <div class="blockArea">
-      <el-row :gutter="30" style="min-width:1045px;margin-left:0px;margin-right:0px;">
+      <el-space wrap :size="30" alignment="left">
+        <image-card :item="item.overviewdata" v-for="(item, index) in cardItemList" :key="index" />
+      </el-space>
+      <!-- <el-row :gutter="30" style="min-width:1045px;margin-left:0px;margin-right:0px;">
         <el-col :span="judge()" v-for="(item, index) in cardItemList" :key="index">
-          <image-card :item="item" />
+          <image-card :item="item.overviewdata" />
         </el-col>
-      </el-row>
+      </el-row> -->
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { ImagesOverviewType } from "@/data/interface";
+import { CollectionsOverviewType } from "@/interefaces/Images";
 import imageCard from "@/components/imageCard.vue";
-import { apiImagesOverview } from "@/API";
+import { apiImagesOverview, apiUserGet } from "@/API";
 
 export default defineComponent({
   name: "Catalog",
@@ -33,7 +36,7 @@ export default defineComponent({
     imageCard,
   },
   setup() {
-    const cardItemList = ref<ImagesOverviewType[]>([]);
+    const cardItemList = ref<CollectionsOverviewType[]>([]);
 
     return {
       cardItemList,
@@ -74,6 +77,9 @@ export default defineComponent({
       this.cardItemList = res.data;
       console.log(this.cardItemList);
     });
+    apiUserGet().then((res) => {
+      console.log("Get", res);
+    });
   },
 });
 </script>
@@ -85,7 +91,7 @@ export default defineComponent({
 .blockArea {
   margin-top: 20px;
   overflow: auto;
-  height: calc(100vh - 180px);
+  height: calc(100vh - 200px);
 }
 
 .buttonStyle {
@@ -96,7 +102,7 @@ export default defineComponent({
 }
 
 .selectArea {
-  height: 100px;
+  height: 120px;
   position: relative;
   overflow: hidden;
 }
